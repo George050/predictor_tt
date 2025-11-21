@@ -6,7 +6,7 @@ import 'package:tt_predictor/front/pages/addPetPage.dart';
 import 'package:tt_predictor/required/enumeration.dart';
 import 'package:tt_predictor/front/pages/editPetPage.dart';
 import 'package:http/http.dart' as http;
-
+import 'package:platform_detector/platform_detector.dart';
 
 
 class Home extends StatefulWidget {
@@ -21,7 +21,6 @@ class HomeState extends State<Home> {
   int pageIndex = 0;
   String text = "";
   StateLabel petsStatus = StateLabel.available;
-  final int crossAxisCount = kIsWeb ? 5 : 3;
   int textFieldPetId = 0;
   List petsIndexForDelete = [];
 
@@ -141,7 +140,7 @@ class HomeState extends State<Home> {
                   padding: EdgeInsets.symmetric(horizontal: 4.0),
                   margin: EdgeInsets.all(8.0),
                   child: GridView.count(
-                    crossAxisCount: crossAxisCount,
+                    crossAxisCount: MediaQuery.of(context).size.width > 600 ? 5 : 3,
                     childAspectRatio: 0.7,
                     children: petCards
                 )
@@ -251,7 +250,7 @@ class HomeState extends State<Home> {
                           child: Text(
                               curPet["name"] ?? "noname pet",
                               style: TextStyle(
-                                  fontSize: kIsWeb ? 18 : 13
+                                  fontSize: MediaQuery.of(context).size.width > 600 ? 18 : 13
                               ),
                               maxLines: 2
                           )
@@ -354,7 +353,7 @@ class HomeState extends State<Home> {
                       child: Text(
                           curPet["name"] ?? "noname pet",
                           style: TextStyle(
-                              fontSize: kIsWeb ? 18 : 13
+                              fontSize: MediaQuery.of(context).size.width > 600 ? 18 : 13
                           ),
                           maxLines: 2
                       )
